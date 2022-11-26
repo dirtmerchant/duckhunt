@@ -24,7 +24,7 @@ def draw_gun():
     lasers = ["red", "purple", "green"]
     clicks = pygame.mouse.get_pressed()
     if mouse_pos[0] != gun_point[0]:
-        slope = mouse_pos[1] - gun_point[1] / (mouse_pos[0] - gun_point[0])
+        slope = (mouse_pos[1] - gun_point[1]) / (mouse_pos[0] - gun_point[0])
     else:
         slope = -100000
     angle = math.atan(slope)
