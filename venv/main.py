@@ -100,7 +100,7 @@ for i in range(3):
 for i in range(3):
     my_list = targets[2]
     for j in range(my_list[i]):
-        one_coords[i].append(
+        two_coords[i].append(
             (WIDTH // (my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2))
         )
 for i in range(4):
@@ -117,11 +117,12 @@ while run:
     screen.fill("black")
     screen.blit(bgs[level - 1], (0, 0))
     screen.blit(banners[level - 1], (0, HEIGHT - 200))
+    
     if level == 1:
         draw_level(one_coords)
-    if level == 2:
+    elif level == 2:
         draw_level(two_coords)
-    if level == 3:
+    elif level == 3:
         draw_level(three_coords)
 
     if level > 0:
