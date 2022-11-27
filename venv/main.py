@@ -12,10 +12,13 @@ bgs = []
 banners = []
 guns = []
 target_images = [[], [], []]
-targets = {1: [10, 5, 3], 
-            2: [12, 8, 5], 
-            3: [15, 12, 8, 3]}
+targets = {1: [10, 5, 3], 2: [12, 8, 5], 3: [15, 12, 8, 3]}
 level = 1
+one_coords = [[], [], []]
+two_coords = [[], [], []]
+three_coords = [[], [], [], []]
+
+
 for i in range(1, 4):
     bgs.append(pygame.image.load(f"assets/bgs/{i}.png"))
     banners.append(pygame.image.load(f"assets/banners/{i}.png"))
@@ -70,6 +73,7 @@ def draw_gun():
             if clicks[0]:
                 pygame.draw.circle(screen, lasers[level - 1], mouse_pos, 5)
 
+
 def draw_level(coords):
     if level == 1 or level == 2:
         target_rects = [[], [], []]
@@ -77,27 +81,34 @@ def draw_level(coords):
         target_rects = [[], [], [], []]
     for i in range(len(coords)):
         for j in range(len(coords[i])):
-            target_rects[i].append(pygame.rect.Rect((coords[i][j][0] + 20, coords[i][j][1]), 
-                (60-i*12, 60-i*12)))
-            screen.blit(target_images[level-1][i], coords[i][j])
-        return target_rects
-    
-#initialize enemy coordinates
-one_coords = [[], [], []]
-two_coords = [[], [], []]
-three_coords = [[], [], [], []]
+            target_rects[i].append(
+                pygame.rect.Rect(
+                    (coords[i][j][0] + 20, coords[i][j][1]), (60 - i * 12, 60 - i * 12)
+                )
+            )
+            screen.blit(target_images[level - 1][i], coords[i][j])
+    return target_rects
+
+# initialize enemy coordinates
+
 for i in range(3):
     my_list = targets[1]
     for j in range(my_list[i]):
-        one_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2 )))
+        one_coords[i].append(
+            (WIDTH // (my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2))
+        )
 for i in range(3):
     my_list = targets[2]
     for j in range(my_list[i]):
-        one_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2 )))
+        one_coords[i].append(
+            (WIDTH // (my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2))
+        )
 for i in range(4):
     my_list = targets[3]
     for j in range(my_list[i]):
-        three_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i * 100) + 30 * (j % 2 )))
+        three_coords[i].append(
+            (WIDTH // (my_list[i]) * j, 300 - (i * 100) + 30 * (j % 2))
+        )
 
 run = True
 while run:
@@ -112,7 +123,6 @@ while run:
         draw_level(two_coords)
     if level == 3:
         draw_level(three_coords)
-
 
     if level > 0:
         draw_gun()
