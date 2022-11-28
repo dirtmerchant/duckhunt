@@ -14,8 +14,7 @@ guns = []
 points = 0
 target_images = [[], [], []]
 targets = {1: [10, 5, 3], 2: [12, 8, 5], 3: [15, 12, 8, 3]}
-level = 3
-
+level = 1
 shot = False
 total_shots= 0
 mode = 0
@@ -170,8 +169,7 @@ while run:
         target_boxes = draw_level(three_coords)
         three_coords = move_level(three_coords)
 
-    if level > 0:
-        draw_gun()
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -183,6 +181,10 @@ while run:
                 total_shots += 1
                 if mode == 1:
                     ammo -= 1
+
+    if level > 0:
+        if target_boxes == [[],[],[]] and level < 3:
+            level += 1
 
     pygame.display.flip()
 pygame.quit()
