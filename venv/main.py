@@ -73,6 +73,7 @@ def draw_gun():
             if clicks[0]:
                 pygame.draw.circle(screen, lasers[level - 1], mouse_pos, 5)
 
+
 def move_level(coords):
     if level == 1 or level == 2:
         max_val = 3
@@ -84,8 +85,8 @@ def move_level(coords):
             if my_coords[0] < -150:
                 coords[i][j] = (WIDTH, my_coords[1])
             else:
-                coords[i][j] = (my_coords[0] -2**i, my_coords[1])
-    return(coords)
+                coords[i][j] = (my_coords[0] - 2**i, my_coords[1])
+    return coords
 
 
 def draw_level(coords):
@@ -102,6 +103,7 @@ def draw_level(coords):
             )
             screen.blit(target_images[level - 1][i], coords[i][j])
     return target_rects
+
 
 # initialize enemy coordinates
 
@@ -132,8 +134,6 @@ while run:
     screen.blit(bgs[level - 1], (0, 0))
     screen.blit(banners[level - 1], (0, HEIGHT - 200))
 
-
-    
     if level == 1:
         target_boxes = draw_level(one_coords)
         one_coords = move_level(one_coords)
