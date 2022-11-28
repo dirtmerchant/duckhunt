@@ -13,7 +13,7 @@ banners = []
 guns = []
 target_images = [[], [], []]
 targets = {1: [10, 5, 3], 2: [12, 8, 5], 3: [15, 12, 8, 3]}
-level = 1
+level = 3
 one_coords = [[], [], []]
 two_coords = [[], [], []]
 three_coords = [[], [], [], []]
@@ -119,11 +119,11 @@ while run:
     screen.blit(banners[level - 1], (0, HEIGHT - 200))
     
     if level == 1:
-        draw_level(one_coords)
+        target_boxes = draw_level(one_coords)
     elif level == 2:
-        draw_level(two_coords)
+        target_boxes = draw_level(two_coords)
     elif level == 3:
-        draw_level(three_coords)
+        target_boxes = draw_level(three_coords)
 
     if level > 0:
         draw_gun()
